@@ -1,0 +1,8 @@
+{
+  "recommendations": [
+    "arcticicestudio.nord-visual-studio-code",
+    "DavidAnson.vscode-markdownlint",
+    "ms-vscode.wordcount",
+    "vscode-icons-team.vscode-icons"
+  ]
+}

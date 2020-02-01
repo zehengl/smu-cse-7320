@@ -1,0 +1,62 @@
+% Saved by Prover9-Mace4 Version 0.5B, March 2008 (Dec 2007 LADR).
+
+set(ignore_option_dependencies). % GUI handles dependencies
+
+if(Prover9). % Options for Prover9
+  assign(order, kbo).
+  assign(max_seconds, 60).
+end_if.
+
+if(Mace4).   % Options for Mace4
+  assign(max_seconds, 60).
+end_if.
+
+formulas(assumptions).
+
+Wolf(x)        -> Animal(x) .
+Fox(x)         -> Animal(x) .
+Bird(x)        -> Animal(x) .
+Caterpillar(x) -> Animal(x) .
+Snail(x)       -> Animal(x) .
+Grain(x)       -> Plant(x) .
+
+exists x Wolf(x).
+exists x Fox(x).
+exists x Bird(x).
+exists x Caterpillar(x).
+exists x Snail(x).
+exists x Grain(x).
+
+Animal(x) -> ( Plant(y)->Eat(x,y) )
+             |
+             (
+               all z (
+                      Animal(z) & Smaller(z,x) & ( exists w Plant(w) & Eat(z,w) )
+                       -> Eat(x,z)
+                     )
+             ) .
+
+Caterpillar(x) & Bird(y) -> Smaller(x,y) .
+Snail(x)       & Bird(y) -> Smaller(x,y) .
+Bird(x)        & Fox(y)  -> Smaller(x,y) .
+Fox(x)         & Wolf(y) -> Smaller(x,y) .
+
+Bird(x) & Caterpillar(y) ->  Eat(x,y) .
+Wolf(x) & Fox(y)         -> -Eat(x,y) .
+Wolf(x) & Grain(y)       -> -Eat(x,y) .
+Bird(x) & Snail(y)       -> -Eat(x,y) .
+
+Caterpillar(x) -> exists y ( Plant(y) & Eat(x,y) ) .
+Snail(x)       -> exists y ( Plant(y) & Eat(x,y) ) .
+
+end_of_list.
+
+formulas(goals).
+
+exists x exists y (
+                    Animal(x) & Animal(y) & Eat(x,y)
+                    &
+                    ( all z Grain(z) -> Eat(y,z) )
+                  ) .
+
+end_of_list.

@@ -1,0 +1,32 @@
+% Saved by Prover9-Mace4 Version 0.5B, March 2008 (Dec 2007 LADR).
+
+set(ignore_option_dependencies). % GUI handles dependencies
+
+if(Prover9). % Options for Prover9
+  assign(order, kbo).
+  assign(max_seconds, 60).
+end_if.
+
+if(Mace4).   % Options for Mace4
+  assign(max_seconds, 60).
+end_if.
+
+formulas(assumptions).
+
+-Dance(x) & -Eat(x,pennybuns) -> Old(x) .
+(Pig(x) -> Giddiness(x)) -> Respect(x) .
+Wise(x) & Ballonist(x) -> Umbrella(x) .
+Ridiculous(x) & Eat(x,pennybuns) -> -Lunch(x) .
+-Old(x) & Ballonist(x) -> Giddiness(x) .
+Fat(x) & Ridiculous(x) & -Dance(x) -> Lunch(x) .
+Wise(x) & Giddiness(x) -> -Dance(x) .
+Pig(x) & Umbrella(x) -> Ridiculous(x) .
+-Dance(x) & Respect(x) -> Fat(x) .
+
+end_of_list.
+
+formulas(goals).
+
+-Old(x) & Wise(x) & Pig(x) -> -Ballonist(x) .
+
+end_of_list.
