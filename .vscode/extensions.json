@@ -1,6 +1,5 @@
 {
   "recommendations": [
-    "coenraads.bracket-pair-colorizer",
     "davidanson.vscode-markdownlint",
     "ms-vscode.wordcount",
     "naumovs.theme-oceanicnext",
